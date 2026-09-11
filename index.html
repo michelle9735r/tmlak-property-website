@@ -551,7 +551,6 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 </head>
 <body>
 
-<div class="demo-banner">This is a <strong>single-file working prototype</strong> for visual review — not connected to any CMS, CRM, or the live TMLAK website. Navigation between sections happens client-side.</div>
 <div class="topbar wrap"><span>Dubai Real Estate Advisory</span><span>Private Property & Investment Desk · UAE</span></div>
 
 <header class="nav" id="siteHeader">
@@ -618,8 +617,8 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
       <div class="hero-ai reveal">
         <div class="hero-ai-label"><span class="pulse"></span>TMLAK AI Advisor · Available Now</div>
         <div class="hero-ai-row">
-          <input type="text" placeholder="Ask about Dubai property, yields, or the Golden Visa…" readonly onclick="location.href='ai-advisor.html'">
-          <button onclick="location.href='ai-advisor.html'">Ask →</button>
+          <input type="text" placeholder="Ask about Dubai property, yields, or the Golden Visa…" readonly onclick="showPage('ai-advisor')">
+          <button onclick="showPage('ai-advisor')">Ask →</button>
         </div>
       </div>
     </div>
@@ -2925,6 +2924,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const steps = document.querySelectorAll('.advisor-step');
     let stepIndex = 0;
     const answers = {};
+    let awaitingName = true;
+    let visitorName = null;
+    function isGreeting(v) {
+      return /^(hi+|hello+|hey+|hiya|yo|good\s*(morning|afternoon|evening))[\s!.,]*$/i.test(v.trim());
+    }
 
     function scrollLog() { advisorLog.scrollTop = advisorLog.scrollHeight; }
 
@@ -2959,7 +2963,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return true;
           }).slice(0, 3);
 
-          let html = `Based on what you've shared, here's what's currently in range \u2014 all pulled from verified project records only:`;
+          let html = `Based on what you've shared${visitorName ? ', ' + visitorName : ''}, here's what's currently in range \u2014 all pulled from verified project records only:`;
           if (matches.length) {
             matches.forEach(p => { html += `<div class="rec-card"><strong>${p.name}</strong><span>${p.developer} \u00b7 ${p.community} \u00b7 ${p.status}</span></div>`; });
             html += `<p style="margin-top:12px; color:var(--muted); font-size:12px;">Pricing and ROI show "Information required" until verified \u2014 I won't estimate a number I can't confirm.</p>`;
@@ -2994,8 +2998,21 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleUserInput(value) {
       if (!value.trim()) return;
       addMsg('user', value);
-      if (stepIndex < ADVISOR_SCRIPT.length) { answers[ADVISOR_SCRIPT[stepIndex].key] = value; stepIndex++; }
       input.value = '';
+
+      if (awaitingName) {
+        if (isGreeting(value)) {
+          setTimeout(() => addMsg('bot', `Hello! May I know your good name before we proceed?`), 500);
+          return;
+        }
+        visitorName = value.trim().split(/\s+/)[0].replace(/[^A-Za-z\u00C0-\u024F\u0600-\u06FF'-]/g, '');
+        awaitingName = false;
+        setTimeout(() => addMsg('bot', `Nice to meet you, ${visitorName || 'there'}! ${ADVISOR_SCRIPT[0].question}`), 500);
+        updateSteps();
+        return;
+      }
+
+      if (stepIndex < ADVISOR_SCRIPT.length) { answers[ADVISOR_SCRIPT[stepIndex].key] = value; stepIndex++; }
       askNext();
     }
 
@@ -3003,7 +3020,7 @@ document.addEventListener('DOMContentLoaded', () => {
     input.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleUserInput(input.value); });
 
     updateSteps();
-    setTimeout(() => addMsg('bot', `Hi \u2014 I'm the TMLAK AI Property Advisor prototype. I'll ask a few questions and match you against verified project records only. ${ADVISOR_SCRIPT[0].question}`), 400);
+    setTimeout(() => addMsg('bot', `Hi \u2014 I'm the TMLAK AI Property Advisor prototype. I'll ask a few questions and match you against verified project records only. Before we begin, may I know your good name?`), 400);
   }
 
 });
