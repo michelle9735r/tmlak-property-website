@@ -422,12 +422,28 @@ html[dir="rtl"] .advisor-msg.bot{ align-self:flex-end; }
 .advisor-bubble .rec-card strong{ display:block; font-family:'Fraunces', serif; font-size:14.5px; color:var(--brass-light); margin-bottom:4px; }
 .advisor-bubble .rec-card span{ font-size:11.5px; color:var(--muted-2); }
 .advisor-choices{ display:flex; gap:10px; flex-wrap:wrap; margin-top:13px; }
-.advisor-choices button{ background:var(--ink); border:1px solid var(--line-strong); color:var(--text); padding:9px 15px; font-size:12.5px; }
-.advisor-choices button:hover{ border-color:var(--brass); color:var(--brass-light); }
+.advisor-choices button{ background:#090d16; border:1px solid rgba(255,255,255,.18); color:#f2eee2; padding:9px 15px; font-size:12.5px; }
+.advisor-choices button:hover{ border-color:#c6a24d; color:#e7cd85; }
 .advisor-input-row{ display:flex; gap:10px; padding:20px; border-top:1px solid var(--line); }
 .advisor-input-row input{ flex:1; background:var(--surface); border:1px solid var(--line-strong); color:var(--text); padding:13px 15px; font-family:'Inter', sans-serif; font-size:14px; }
 .advisor-input-row input:focus{ outline:none; border-color:var(--brass); }
 .advisor-input-row button{ background:var(--brass); color:#10131a; border:none; padding:0 20px; font-family:'IBM Plex Mono', monospace; font-size:11px; text-transform:uppercase; letter-spacing:.05em; }
+
+/* ---------- AI ADVISOR MODAL (popup chat widget, not a full page) ---------- */
+.ai-modal-backdrop{ display:none; position:fixed; inset:0; z-index:300; background:rgba(9,13,22,.6); backdrop-filter:blur(2px); align-items:flex-end; justify-content:flex-end; padding:26px; }
+.ai-modal-backdrop.open{ display:flex; }
+.ai-modal-card{ width:400px; max-width:100%; height:640px; max-height:80vh; background:var(--ink); border:1px solid var(--line-strong); display:flex; flex-direction:column; box-shadow:0 20px 60px rgba(0,0,0,.5); }
+.ai-modal-header{ display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid var(--line); background:var(--surface); flex-shrink:0; }
+.ai-modal-title{ display:flex; align-items:center; gap:9px; font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--brass-light); }
+.ai-modal-title .pulse{ width:6px; height:6px; border-radius:50%; background:var(--brass-light); box-shadow:0 0 0 0 rgba(231,205,133,.5); animation:aipulse 2.2s infinite; }
+.ai-modal-close{ background:none; border:none; color:var(--muted); font-size:22px; line-height:1; cursor:pointer; padding:2px 6px; }
+.ai-modal-close:hover{ color:var(--text); }
+.ai-modal-card .advisor-log{ max-height:none; }
+.ai-modal-disclaimer{ font-size:10.5px; color:var(--muted-2); padding:10px 20px 16px; line-height:1.5; border-top:1px solid var(--line); flex-shrink:0; margin:0; }
+@media(max-width:560px){
+  .ai-modal-backdrop{ padding:0; }
+  .ai-modal-card{ width:100%; height:100%; max-height:100%; }
+}
 
 /* ---------- WHATSAPP FLOAT ---------- */
 /* ---------- CONTACT FAB (WhatsApp / Call / Email launcher) ---------- */
@@ -497,6 +513,8 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:850px){
   .nav-links{ display:none; }
+  .hamburger{ display:flex; }
+  .lang-switch, .ai-pill, .navbtn{ display:none; }
   .hero:before{ background:linear-gradient(90deg,rgba(9,13,22,.96),rgba(9,13,22,.65)), var(--hero-img, url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=85')) center/cover; }
   .split, .advisor, .contact-split, .detail-body{ grid-template-columns:1fr; gap:36px; }
   .chat{ border-left:0; border-top:1px solid var(--line); }
@@ -617,8 +635,8 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
       <div class="hero-ai reveal">
         <div class="hero-ai-label"><span class="pulse"></span>TMLAK AI Advisor · Available Now</div>
         <div class="hero-ai-row">
-          <input type="text" placeholder="Ask about Dubai property, yields, or the Golden Visa…" readonly onclick="showPage('ai-advisor')">
-          <button onclick="showPage('ai-advisor')">Ask →</button>
+          <input type="text" placeholder="Ask about Dubai property, yields, or the Golden Visa…" readonly onclick="openAdvisorModal()">
+          <button onclick="openAdvisorModal()">Ask →</button>
         </div>
       </div>
     </div>
@@ -796,7 +814,7 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
           <div class="chatbox">
             <div class="bubble">I have AED 1.5M and want rental income. Where should I start?</div>
             <div class="bubble ai"><b style="color:var(--brass-light);">TMLAK AI Advisor</b><br><br>I'll compare verified opportunities against your budget, objective, preferred location and timeline. I won't recommend a project using unverified figures.</div>
-            <div class="prompt"><input placeholder="Ask about Dubai property…" id="homeAiPreviewInput" readonly><button onclick="showPage('ai-advisor')">→</button></div>
+            <div class="prompt"><input placeholder="Ask about Dubai property…" id="homeAiPreviewInput" readonly><button onclick="openAdvisorModal()">→</button></div>
           </div>
         </div>
       </div>
@@ -2241,43 +2259,19 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
   </section>
 </div>
 
-<div class="page" id="page-ai-advisor">
-<section class="page-hero" style="padding-bottom:40px; --hero-img:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1800&q=80');">
-    <div class="wrap">
-      <div class="breadcrumbs"><a href="#" data-page="home">Home</a> / <span>AI Property Advisor</span></div>
-      <div class="eyebrow">AI Property Advisor — Prototype</div>
-      <h1>Your property search,<br>with intelligence built in.</h1>
-      <p class="lead">Describe your goal and budget. The advisor asks follow-up questions, then matches you only against verified project records — never invented prices, ROI, or availability.</p>
+<div class="ai-modal-backdrop" id="aiModalBackdrop">
+  <div class="ai-modal-card" role="dialog" aria-label="TMLAK AI Property Advisor" aria-modal="true">
+    <div class="ai-modal-header">
+      <div class="ai-modal-title"><span class="pulse"></span>TMLAK AI Property Advisor</div>
+      <button class="ai-modal-close" id="aiModalClose" aria-label="Close">×</button>
     </div>
-  </section>
-
-  <section class="light-section" style="border-bottom:none;">
-    <div class="wrap">
-      <div class="advisor-shell reveal">
-        <aside class="advisor-side">
-          <h4>Qualification Progress</h4>
-          <div class="advisor-progress">
-            <div class="advisor-step" data-step="0">Purpose</div>
-            <div class="advisor-step" data-step="1">Budget</div>
-            <div class="advisor-step" data-step="2">Location</div>
-            <div class="advisor-step" data-step="3">Off-plan / Ready</div>
-            <div class="advisor-step" data-step="4">Recommendation</div>
-          </div>
-          <p class="advisor-disclaimer">This advisor never invents pricing, ROI, or availability. Where verified data doesn't exist, it says so directly — rather than estimating.</p>
-        </aside>
-        <div class="advisor-main">
-          <div class="advisor-log" id="advisorLog"></div>
-          <div class="advisor-input-row">
-            <input type="text" id="advisorInput" placeholder="Type your answer…" autocomplete="off">
-            <button id="advisorSend">Send</button>
-          </div>
-        </div>
-      </div>
-      <div class="reveal" style="margin-top:40px; text-align:center;">
-        <p style="color:var(--muted-2); font-size:12.5px; max-width:520px; margin:0 auto;">In production, this flow extracts structured criteria from natural language, queries the live project database for verified matches only, and hands off qualified leads to WhatsApp or the CRM — see the architecture proposal for the full data flow.</p>
-      </div>
+    <div class="advisor-log" id="advisorLog"></div>
+    <div class="advisor-input-row">
+      <input type="text" id="advisorInput" placeholder="Type your answer…" autocomplete="off">
+      <button id="advisorSend">Send</button>
     </div>
-  </section>
+    <p class="ai-modal-disclaimer">This advisor never invents pricing, ROI, or availability — where verified data doesn't exist, it says so directly.</p>
+  </div>
 </div>
 </main>
 
@@ -3048,8 +3042,7 @@ const PAGE_TITLES = {
   "insight-the-yield-trap": "The Yield Trap — TMLAK Property",
   "insight-golden-visa": "UAE Golden Visa Through Dubai Property — TMLAK Property",
   "about": "About — TMLAK Property",
-  "contact": "Contact — TMLAK Property",
-  "ai-advisor": "AI Property Advisor — TMLAK Property"
+  "contact": "Contact — TMLAK Property"
 };
 
 /* ---------- page switcher ---------- */
@@ -3066,12 +3059,45 @@ function showPage(key) {
 
 document.addEventListener('click', (e) => {
   const a = e.target.closest('[data-page]');
-  if (a) { e.preventDefault(); showPage(a.dataset.page); }
+  if (a) {
+    e.preventDefault();
+    if (a.dataset.page === 'ai-advisor') { openAdvisorModal(); return; }
+    showPage(a.dataset.page);
+  }
+});
+
+function openAdvisorModal() {
+  const backdrop = document.getElementById('aiModalBackdrop');
+  if (!backdrop) return;
+  backdrop.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  const mm = document.getElementById('mobileMenu');
+  if (mm) mm.classList.remove('open');
+  const input = document.getElementById('advisorInput');
+  if (input) setTimeout(() => input.focus(), 100);
+}
+function closeAdvisorModal() {
+  const backdrop = document.getElementById('aiModalBackdrop');
+  if (!backdrop) return;
+  backdrop.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const aiClose = document.getElementById('aiModalClose');
+  const aiBackdrop = document.getElementById('aiModalBackdrop');
+  if (aiClose) aiClose.addEventListener('click', closeAdvisorModal);
+  if (aiBackdrop) aiBackdrop.addEventListener('click', (e) => { if (e.target === aiBackdrop) closeAdvisorModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAdvisorModal(); });
 });
 
 document.addEventListener('DOMContentLoaded', () => {
   const initialKey = (location.hash || '#home').slice(1);
-  showPage(initialKey);
+  if (initialKey === 'ai-advisor') {
+    showPage('home');
+    openAdvisorModal();
+  } else {
+    showPage(initialKey);
+  }
 });
 
 
