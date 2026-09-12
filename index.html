@@ -90,6 +90,8 @@ header.nav{ position:sticky; top:0; z-index:200; height:78px; background:rgba(9,
 html[dir="rtl"] .lang-menu{ right:auto; left:0; }
 .lang-menu.open{ display:block; }
 .lang-menu button{ display:flex; justify-content:space-between; width:100%; padding:12px 14px; background:none; border:none; border-bottom:1px solid var(--line); color:var(--muted); font-size:13px; text-align:left; }
+.lang-menu button:disabled{ opacity:.45; cursor:not-allowed; }
+.lang-menu button:disabled:hover{ color:var(--muted); background:none; }
 .lang-menu button:hover{ color:var(--text); background:rgba(198,162,77,.06); }
 .lang-menu button span.tag{ font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--muted-2); }
 .ai-pill{ display:flex; align-items:center; gap:7px; font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--brass-light); padding:0 2px; white-space:nowrap; position:relative; }
@@ -605,9 +607,9 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
         <button class="lang-btn" id="langBtn"><span class="lang-current">EN</span> ▾</button>
         <div class="lang-menu" id="langMenu">
           <button data-dir="ltr" data-label="EN">English <span class="tag">EN</span></button>
-          <button data-dir="rtl" data-label="AR">العربية <span class="tag">RTL</span></button>
-          <button data-dir="ltr" data-label="RU">Русский <span class="tag">RU</span></button>
-          <button data-dir="ltr" data-label="ZH">中文 <span class="tag">ZH</span></button>
+          <button data-dir="rtl" data-label="AR">العربية <span class="tag">RTL Preview</span></button>
+          <button data-dir="ltr" data-label="EN" disabled title="Full Russian translation not yet available">Русский <span class="tag">Coming Soon</span></button>
+          <button data-dir="ltr" data-label="EN" disabled title="Full Chinese translation not yet available">中文 <span class="tag">Coming Soon</span></button>
         </div>
       </div>
       <a href="#" data-page="ai-advisor" class="ai-pill">AI Advisor</a>
@@ -2231,6 +2233,44 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
   </section>
 </div>
 
+<div class="page" id="page-privacy">
+<section class="page-hero" style="padding-bottom:40px;">
+    <div class="wrap">
+      <div class="breadcrumbs"><a href="#" data-page="home">Home</a> / <span>Privacy Policy</span></div>
+      <div class="eyebrow">Privacy Policy</div>
+      <h1>How we handle your information.</h1>
+    </div>
+  </section>
+  <section class="light-section" style="border-bottom:none;">
+    <div class="wrap" style="max-width:760px;">
+      <div class="reveal" style="font-size:15px; line-height:1.9; color:var(--text-soft);">
+        <p style="margin-bottom:18px;">TMLAK Property's full Privacy Policy is currently being finalized and will be published here shortly.</p>
+        <p style="margin-bottom:18px;">In the meantime, any information you share with us through this website — including via forms, the AI Property Advisor, or WhatsApp — is used solely to respond to your enquiry and is not sold or shared with third parties for marketing purposes.</p>
+        <p>If you have questions about how your data is handled, please contact us directly at <a href="mailto:info@tmlakproperty.com" style="color:var(--brass-light);">info@tmlakproperty.com</a>.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="page" id="page-terms">
+<section class="page-hero" style="padding-bottom:40px;">
+    <div class="wrap">
+      <div class="breadcrumbs"><a href="#" data-page="home">Home</a> / <span>Terms of Service</span></div>
+      <div class="eyebrow">Terms of Service</div>
+      <h1>Terms of using this website.</h1>
+    </div>
+  </section>
+  <section class="light-section" style="border-bottom:none;">
+    <div class="wrap" style="max-width:760px;">
+      <div class="reveal" style="font-size:15px; line-height:1.9; color:var(--text-soft);">
+        <p style="margin-bottom:18px;">TMLAK Property's full Terms of Service are currently being finalized and will be published here shortly.</p>
+        <p style="margin-bottom:18px;">This website and its content — including project information, investment calculators, and the AI Property Advisor — are provided for general informational purposes and do not constitute financial, legal, or investment advice. Property details should be independently verified with TMLAK Property before making any decision.</p>
+        <p>For questions, please contact us at <a href="mailto:info@tmlakproperty.com" style="color:var(--brass-light);">info@tmlakproperty.com</a>.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
 <div class="page" id="page-contact">
 <section class="page-hero" style="padding-bottom:50px; --hero-img:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1800&q=80');">
     <div class="wrap">
@@ -2298,11 +2338,10 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 <footer>
   <div class="wrap footer-licences">
     <span class="badge badge-pending"><span class="dot"></span>RERA Dubai — Pending Verification</span>
-    <span class="badge badge-pending"><span class="dot"></span>Trade Licence — Pending Verification</span>
   </div>
   <div class="wrap foot">
     <span>© 2026 TMLAK PROPERTY · Dubai Real Estate Advisory</span>
-    <span class="flinks"><a href="#" data-page="about">Privacy</a><a href="#" data-page="about">Terms</a><a href="#">EN</a><a href="#">العربية</a><a href="#">Русский</a><a href="#">中文</a></span>
+    <span class="flinks"><a href="#" data-page="privacy">Privacy Policy</a><a href="#" data-page="terms">Terms of Service</a></span>
   </div>
 </footer>
 
@@ -3070,6 +3109,8 @@ const PAGE_TITLES = {
   "insight-the-yield-trap": "The Yield Trap — TMLAK Property",
   "insight-golden-visa": "UAE Golden Visa Through Dubai Property — TMLAK Property",
   "about": "About — TMLAK Property",
+  "privacy": "Privacy Policy — TMLAK Property",
+  "terms": "Terms of Service — TMLAK Property",
   "contact": "Contact — TMLAK Property"
 };
 
