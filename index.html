@@ -162,8 +162,6 @@ html[dir="rtl"] .lang-menu{ right:auto; left:0; }
 }
 .hero:after{ content:''; position:absolute; right:-8%; bottom:-35%; width:58vw; height:58vw; border:1px solid rgba(199,163,90,.18); border-radius:50%; box-shadow:0 0 0 90px rgba(199,163,90,.025), 0 0 0 180px rgba(199,163,90,.018); pointer-events:none; }
 .hero .wrap{ position:relative; z-index:2; padding:95px 0; }
-.eyebrow{ font:10px 'IBM Plex Mono',monospace; letter-spacing:.2em; text-transform:uppercase; color:var(--brass-light); display:flex; gap:12px; align-items:center; margin-bottom:14px; }
-.eyebrow:before{ content:''; width:34px; height:1px; background:var(--brass); }
 .hero h1{ font:500 clamp(46px,7vw,96px)/.94 'Fraunces',Georgia,serif; letter-spacing:-.04em; max-width:850px; margin:20px 0; }
 .hero h1 em{ font-style:normal; color:var(--brass-light); }
 .lead{ font-size:16px; line-height:1.8; color:var(--text-soft); max-width:590px; }
@@ -526,7 +524,6 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 .card .body .tag{ color:#e7cd85; }
 .card .body p{ color:#c9ced7; }
 .advisor .copybox{ color:#f2eee2; }
-.advisor .copybox .eyebrow{ color:#e7cd85; }
 .advisor .copybox h2{ color:#f2eee2; }
 .advisor .copybox .copy{ color:#c9ced7; }
 
@@ -635,7 +632,6 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 <div class="page active" id="page-home">
 <section class="hero">
     <div class="wrap">
-      <div class="eyebrow">Dubai Property · Investor's Lens</div>
       <h1>Dubai property.<br><em>Informed decisions.</em></h1>
       <p class="lead">TMLAK Property helps investors and buyers see Dubai real estate the way an investor would — sharper market insight, disciplined property selection and human advice, so you find better opportunities, not just available ones.</p>
       <div class="actions">
@@ -673,7 +669,7 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
   <section class="light-section" id="approach">
     <div class="wrap">
       <div class="head reveal">
-        <div><div class="eyebrow">01 / The TMLAK Approach</div><h2>Not more listings.<br>Better decisions.</h2></div>
+        <div><h2>Not more listings.<br>Better decisions.</h2></div>
         <p>Dubai offers thousands of properties. The difficult part is knowing which opportunity actually fits your capital, timeline and objectives.</p>
       </div>
       <div class="split reveal">
@@ -700,7 +696,7 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
   <section id="projects-section">
     <div class="wrap">
       <div class="head reveal">
-        <div><div class="eyebrow">02 / Selected Opportunities</div><h2>Projects worth<br>a closer look.</h2></div>
+        <div><h2>Projects worth<br>a closer look.</h2></div>
         <a class="btn" href="#" data-page="projects">View All Projects →</a>
       </div>
       <div class="projects-grid reveal">
@@ -751,19 +747,17 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
   <section class="light-section" id="developers-section">
     <div class="wrap">
       <div class="head reveal">
-        <div><div class="eyebrow">03 / Developer Intelligence</div><h2>Who builds it<br>matters.</h2></div>
+        <div><h2>Who builds it<br>matters.</h2></div>
         <p>We look beyond the brochure — developer track record, delivery history, project positioning and the community around the asset.</p>
       </div>
       <div class="grid2 reveal">
         <div class="panel">
-          <div class="eyebrow">Developer Lens</div>
           <h3>Compare the builder, not just the building.</h3>
           <p class="copy">Full developer profiles bring projects, track record and investment context into one place.</p>
           <div class="metric"><span>Developer Profiles</span><b><a href="#" data-page="developers" style="color:inherit;">View All →</a></b></div>
           <div class="metric"><span>Project Comparison</span><b>Structured</b></div>
         </div>
         <div class="panel">
-          <div class="eyebrow">Selected Names</div>
           <h3>A clearer view of Dubai's development landscape.</h3>
           <p class="copy">Developer names shown here are reference content and are marked "Selected Developer" until formal partnership is independently verified.</p>
           <div class="metric"><span>Binghatti</span><b>Selected Developer</b></div>
@@ -779,7 +773,6 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
     <div class="wrap">
       <div class="owners-panel reveal">
         <div>
-          <div class="eyebrow">For Property Owners</div>
           <h3>Already own in Dubai?</h3>
           <p class="copy" style="max-width:420px;">Selling, leasing or managing a property is a different conversation than buying one — we handle both sides.</p>
         </div>
@@ -796,7 +789,7 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
   <section class="light-section" id="why-section">
     <div class="wrap">
       <div class="head reveal">
-        <div><div class="eyebrow">04 / Why TMLAK</div><h2>Advice first.<br>Transaction second.</h2></div>
+        <div><h2>Advice first.<br>Transaction second.</h2></div>
         <p>Nothing here is a claim we can't stand behind — no invented statistics, no "official partner" labels we haven't verified, no numbers dressed up to look more impressive than they are.</p>
       </div>
       <div class="split reveal">
@@ -817,12 +810,11 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
   <section id="investment-section">
     <div class="wrap">
       <div class="head reveal">
-        <div><div class="eyebrow">05 / Investment Intelligence</div><h2>Look past the<br>headline yield.</h2></div>
+        <div><h2>Look past the<br>headline yield.</h2></div>
         <p>Investment decisions deserve more than a brochure percentage. Put income, costs, liquidity and growth into the same conversation.</p>
       </div>
       <div class="advisor reveal">
         <div class="copybox">
-          <div class="eyebrow">The TMLAK Framework</div>
           <h2>Gross yield is only the beginning.</h2>
           <p class="copy">Compare gross versus net income, stress-test vacancy and service charges, consider liquidity and define your holding period before calling an opportunity attractive.</p>
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:26px;">
@@ -845,7 +837,7 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
   <section class="light-section" id="steps-section">
     <div class="wrap">
       <div class="head reveal">
-        <div><div class="eyebrow">06 / Your Next Move</div><h2>Four steps from<br>question to decision.</h2></div>
+        <div><h2>Four steps from<br>question to decision.</h2></div>
         <p>Whether you're buying your first Dubai property or building an investment portfolio, the process stays human.</p>
       </div>
       <div class="steps reveal">
@@ -861,7 +853,7 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
   <section id="insights-section">
     <div class="wrap">
       <div class="head reveal">
-        <div><div class="eyebrow">07 / Intelligence Desk</div><h2>Ideas for investors<br>who look twice.</h2></div>
+        <div><h2>Ideas for investors<br>who look twice.</h2></div>
         <a class="btn" href="#" data-page="insights">Explore Insights →</a>
       </div>
       <div class="articles reveal">
@@ -887,7 +879,7 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
   <!-- TESTIMONIALS -->
   <section class="light-section" id="testimonials-section">
     <div class="wrap">
-      <div class="head reveal"><div><div class="eyebrow">Client Feedback</div><h2>4.9 / 5.0<br>average rating.</h2></div></div>
+      <div class="head reveal"><div><h2>4.9 / 5.0<br>average rating.</h2></div></div>
       <div class="grid2 reveal" style="grid-template-columns:1fr 1fr 1fr; gap:2px; background:var(--line); border:1px solid var(--line);">
         <div class="panel" style="border:none;"><p style="font-family:'Fraunces',serif; font-size:15px; line-height:1.6; color:var(--text);">"Our search felt hassle-free from day one — the team understood our budget and lifestyle and only showed us what actually matched."</p><div class="metric" style="border-top:none; margin-top:14px;"><span>Verified Client — Buyer</span></div></div>
         <div class="t-placeholder">Additional testimonials pending client approval for publication.</div>
@@ -911,7 +903,6 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
   <section class="light-section" id="contact-section" style="border-bottom:none;">
     <div class="wrap contact-split">
       <div class="reveal">
-        <div class="eyebrow">08 / Private Consultation</div>
         <h2>Let's make your next move a considered one.</h2>
         <p class="copy">Tell us what you're looking for. An advisor will follow up with the next step.</p>
         <p class="copy" style="margin-top:20px;"><b style="color:var(--text);">+971 54 307 9299</b><br>info@tmlakproperty.com<br>Office 1701, Grosvenor Business Bay Tower, Dubai</p>
@@ -936,7 +927,6 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 <section class="page-hero" style="--hero-img:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1800&q=80');">
     <div class="wrap">
       <div class="breadcrumbs"><a href="#" data-page="home">Home</a> / <span>Projects</span></div>
-      <div class="eyebrow">Project Portfolio</div>
       <h1>Every project, filtered to<br>what actually matters to you.</h1>
       <p class="lead">Search by developer, community, availability or unit size. Pricing and investment figures show "Information required" until independently verified — we don't estimate what we can't confirm.</p>
     </div>
@@ -1154,7 +1144,6 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 <section class="page-hero" style="--hero-img:url('https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1800&q=80');">
     <div class="wrap">
       <div class="breadcrumbs"><a href="#" data-page="home">Home</a> / <span>Developers</span></div>
-      <div class="eyebrow">Selected Developers</div>
       <h1>Developers we track,<br>with verified company facts.</h1>
       <p class="lead">Founding date, headquarters, listing status and notable developments are sourced from public company records. "Selected Developer" reflects projects we actively track and evaluate — it is not a claim of official partnership unless independently confirmed by TMLAK.</p>
     </div>
@@ -1738,7 +1727,6 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 <section class="page-hero" style="--hero-img:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=80');">
     <div class="wrap">
       <div class="breadcrumbs"><a href="#" data-page="home">Home</a> / <span>Communities</span></div>
-      <div class="eyebrow">Communities</div>
       <h1>Where you buy matters<br>as much as what you buy.</h1>
       <p class="lead">Community profiles combine lifestyle context with investment characteristics — pricing and rental data shown only once independently verified.</p>
     </div>
@@ -1835,7 +1823,6 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 <section class="page-hero" style="--hero-img:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1800&q=80');">
     <div class="wrap">
       <div class="breadcrumbs"><a href="#" data-page="home">Home</a> / <span>Investment</span></div>
-      <div class="eyebrow">Investment Intelligence</div>
       <h1>Property is the entry point.<br>Investment thinking is the differentiator.</h1>
       <p class="lead">Guides, a working yield calculator, and the questions worth asking before you commit capital to Dubai real estate.</p>
       <a href="#" data-page="investment-calculator" class="btn gold" style="margin-top:24px;">Open the Investment Calculator</a>
@@ -1844,7 +1831,7 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 
   <section class="light-section">
     <div class="wrap">
-      <div class="head reveal"><div><div class="eyebrow">Guides</div><h2>Core investment concepts,<br>explained plainly.</h2></div></div>
+      <div class="head reveal"><div><h2>Core investment concepts,<br>explained plainly.</h2></div></div>
       <div style="border-top:1px solid var(--line);">
         <div class="step" style="border:none; border-bottom:1px solid var(--line); min-height:auto; padding:26px 0; display:grid; grid-template-columns:70px 1fr; gap:20px;"><span class="num">01</span><div><h3 style="font-size:19px; margin:0 0 8px;">Gross vs. net yield</h3><p style="font-size:13px;">Gross yield is annual rent divided by purchase price. Net yield subtracts service charges, fees and vacancy — the number that actually reflects your return.</p></div></div>
         <div class="step" style="border:none; border-bottom:1px solid var(--line); min-height:auto; padding:26px 0; display:grid; grid-template-columns:70px 1fr; gap:20px;"><span class="num">02</span><div><h3 style="font-size:19px; margin:0 0 8px;">Off-plan vs. ready</h3><p style="font-size:13px;">Off-plan trades construction-period risk for lower entry pricing and staged payments. Ready property trades a pricing premium for immediate income and certainty.</p></div></div>
@@ -1860,7 +1847,7 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 
   <section>
     <div class="wrap">
-      <div class="head reveal"><div><div class="eyebrow">Market Reports</div><h2>Q1 2026, straight from Dubai Land Department.</h2><p>Figures below are reported directly by the Dubai Land Department (DLD) — Dubai's official land registration authority — in their Q1 2026 market release, published 9 April 2026. Not TMLAK estimates.</p></div></div>
+      <div class="head reveal"><div><h2>Q1 2026, straight from Dubai Land Department.</h2><p>Figures below are reported directly by the Dubai Land Department (DLD) — Dubai's official land registration authority — in their Q1 2026 market release, published 9 April 2026. Not TMLAK estimates.</p></div></div>
 
       <div class="stat-strip reveal">
         <div class="stat-cell"><strong>AED 252B</strong><span>Total Transaction Value · +31% YoY</span></div>
@@ -1871,7 +1858,6 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 
       <div class="grid2 reveal" style="margin-top:2px;">
         <div class="panel">
-          <div class="eyebrow">Investor Base</div>
           <h3 style="font-size:22px;">A broader, more international buyer pool.</h3>
           <div class="metric"><span>New investors (Q1 2026)</span><b>29,312 (+14% YoY)</b></div>
           <div class="metric"><span>Foreign investment value</span><b>AED 148.35B (+26%)</b></div>
@@ -1880,7 +1866,6 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
           <div class="metric"><span>Investments by women</span><b>15,540 · AED 32B</b></div>
         </div>
         <div class="panel">
-          <div class="eyebrow">Luxury Segment</div>
           <h3 style="font-size:22px;">High-value demand kept accelerating.</h3>
           <div class="metric"><span>Luxury investment value</span><b>AED 87.71B (+26% YoY)</b></div>
           <div class="metric"><span>Total procedures (all types)</span><b>718,160</b></div>
@@ -1894,7 +1879,7 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 
   <section class="light-section" style="border-bottom:none;">
     <div class="wrap" style="max-width:880px;">
-      <div class="head reveal"><div><div class="eyebrow">Investor FAQ</div><h2>Common questions.</h2></div></div>
+      <div class="head reveal"><div><h2>Common questions.</h2></div></div>
       <div class="reveal">
         <div class="faq-item"><button class="faq-q"><span>Can foreign nationals buy property in Dubai?</span><span class="icon">+</span></button><div class="faq-a"><p>Yes, within designated freehold areas. Requirements vary by nationality and residency status — speak to an advisor for guidance specific to your situation.</p></div></div>
         <div class="faq-item"><button class="faq-q"><span>What ongoing costs should I budget for?</span><span class="icon">+</span></button><div class="faq-a"><p>Service charges, community fees, and (if applicable) property management costs. Exact figures are project- and community-specific and should be verified before purchase.</p></div></div>
@@ -1908,7 +1893,6 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 <section class="page-hero" style="padding-bottom:50px; --hero-img:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1800&q=80');">
     <div class="wrap">
       <div class="breadcrumbs"><a href="#" data-page="home">Home</a> / <a href="#" data-page="investment">Investment</a> / <span>ROI Calculator</span></div>
-      <div class="eyebrow">Dubai ROI Calculator</div>
       <h1>Real Dubai transaction costs.<br>Real return math.</h1>
       <p class="lead">DLD transfer fee, agent commission, vacancy, management and — optionally — mortgage financing, all modeled the way a Dubai transaction actually works. Every output is an estimate based on your inputs, not a forecast or guarantee.</p>
     </div>
@@ -2080,7 +2064,6 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 <section class="page-hero" style="--hero-img:url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1800&q=80');">
     <div class="wrap">
       <div class="breadcrumbs"><a href="#" data-page="home">Home</a> / <span>Insights</span></div>
-      <div class="eyebrow">Insights</div>
       <h1>Ideas for investors<br>who look twice.</h1>
       <p class="lead">Notes from the team on Dubai real estate strategy — reviewed and rewritten before publication, not carried over from any previous site.</p>
     </div>
@@ -2102,7 +2085,6 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 <section class="page-hero" style="padding-bottom:50px; --hero-img:url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1800&q=80');">
     <div class="wrap" style="max-width:880px;">
       <div class="breadcrumbs"><a href="#" data-page="home">Home</a> / <a href="#" data-page="insights">Insights</a> / <span>The Yield Trap</span></div>
-      <div class="eyebrow">Strategy</div>
       <h1 style="font-size:clamp(30px,4vw,46px);">The Yield Trap: Why smart Dubai investors look beyond gross ROI.</h1>
       <p class="lead">Why the number on the brochure and the number in your account are rarely the same — and how to close that gap before you buy, not after.</p>
     </div>
@@ -2132,7 +2114,7 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 
   <section style="border-bottom:none;">
     <div class="wrap">
-      <div class="head reveal"><div><div class="eyebrow">Related</div><h2 style="font-size:24px;">Continue reading</h2></div></div>
+      <div class="head reveal"><div><h2 style="font-size:24px;">Continue reading</h2></div></div>
       <div class="articles reveal">
         <a href="#" data-page="insights" class="article"><div class="date">Dubai · Pending Rewrite</div><h3>Best Areas to Invest in Dubai Real Estate in 2026.</h3><p>A strategic look at established communities, growth areas and investment objectives.</p></a>
         <a href="#" data-page="insights" class="article"><div class="date">Strategy · Pending Rewrite</div><h3>Off-Plan vs Ready Property: Which strategy fits you?</h3><p>The answer depends on capital, timeline, risk tolerance and whether immediate income matters.</p></a>
@@ -2145,7 +2127,6 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 <section class="page-hero" style="padding-bottom:50px; --hero-img:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1800&q=80');">
     <div class="wrap" style="max-width:880px;">
       <div class="breadcrumbs"><a href="#" data-page="home">Home</a> / <a href="#" data-page="insights">Insights</a> / <span>Golden Visa</span></div>
-      <div class="eyebrow">Investment Guide</div>
       <h1 style="font-size:clamp(30px,4vw,46px);">The UAE Golden Visa, through a Dubai property purchase.</h1>
       <p class="lead">A federal residency program, not a TMLAK product — here's how the property route actually works, and what's worth confirming before you count on it.</p>
     </div>
@@ -2181,7 +2162,7 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 
   <section style="border-bottom:none;">
     <div class="wrap">
-      <div class="head reveal"><div><div class="eyebrow">Related</div><h2 style="font-size:24px;">Continue reading</h2></div></div>
+      <div class="head reveal"><div><h2 style="font-size:24px;">Continue reading</h2></div></div>
       <div class="articles reveal">
         <a href="#" data-page="insight-the-yield-trap" class="article"><div class="date">Strategy</div><h3>The Yield Trap: Why smart Dubai investors look beyond gross ROI.</h3><p>Gross yield is a starting point. Net income, liquidity and risk-adjusted return tell a different story.</p></a>
         <a href="#" data-page="insights" class="article"><div class="date">Dubai · Pending Rewrite</div><h3>Best Areas to Invest in Dubai Real Estate in 2026.</h3><p>A strategic look at established communities, growth areas and investment objectives.</p></a>
@@ -2194,7 +2175,6 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 <section class="page-hero" style="--hero-img:url('https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1800&q=80');">
     <div class="wrap">
       <div class="breadcrumbs"><a href="#" data-page="home">Home</a> / <span>About</span></div>
-      <div class="eyebrow">About TMLAK</div>
       <h1>An advisory built around<br>investment thinking, not transaction volume.</h1>
       <p class="lead">TMLAK Property exists to help investors make better decisions about Dubai real estate — not simply to close more listings.</p>
     </div>
@@ -2213,7 +2193,6 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
   <section>
     <div class="wrap" style="max-width:760px;">
       <div class="reveal">
-        <div class="eyebrow">Founder</div>
         <div style="display:flex; gap:26px; align-items:center; flex-wrap:wrap;">
           <div style="width:84px; height:84px; border:1px solid var(--line-strong); display:flex; align-items:center; justify-content:center; font-family:'Fraunces', serif; font-size:28px; color:var(--brass-light); flex-shrink:0;">IA</div>
           <div><h3 style="font-size:23px; margin-bottom:6px;">Ibrahim Ali</h3><span class="badge badge-pending"><span class="dot"></span>Bio Pending Verification</span></div>
@@ -2237,7 +2216,6 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 <section class="page-hero" style="padding-bottom:40px;">
     <div class="wrap">
       <div class="breadcrumbs"><a href="#" data-page="home">Home</a> / <span>Privacy Policy</span></div>
-      <div class="eyebrow">Privacy Policy</div>
       <h1>How we handle your information.</h1>
     </div>
   </section>
@@ -2256,7 +2234,6 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 <section class="page-hero" style="padding-bottom:40px;">
     <div class="wrap">
       <div class="breadcrumbs"><a href="#" data-page="home">Home</a> / <span>Terms of Service</span></div>
-      <div class="eyebrow">Terms of Service</div>
       <h1>Terms of using this website.</h1>
     </div>
   </section>
@@ -2275,7 +2252,6 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 <section class="page-hero" style="padding-bottom:50px; --hero-img:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1800&q=80');">
     <div class="wrap">
       <div class="breadcrumbs"><a href="#" data-page="home">Home</a> / <span>Contact</span></div>
-      <div class="eyebrow">Private Consultation</div>
       <h1>Let's make your next move<br>a considered one.</h1>
       <p class="lead">A member of the team responds personally, typically within one business day.</p>
     </div>
