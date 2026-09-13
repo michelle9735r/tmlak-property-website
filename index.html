@@ -248,6 +248,7 @@ html[dir="rtl"] .filter-count{ margin-left:0; margin-right:auto; }
 
 /* ---------- ENTITY GRID (directories: developers/communities) ---------- */
 .entity-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--line); border:1px solid var(--line); }
+.carousel-dots{ display:none; }
 .entity-card{ background:var(--ink); padding:34px; display:flex; flex-direction:column; gap:16px; justify-content:space-between; min-height:210px; transition:background .35s ease; }
 .entity-card:hover{ background:var(--surface); }
 .entity-mark{ width:42px; height:42px; border:1px solid var(--line-strong); display:flex; align-items:center; justify-content:center; font-family:'Fraunces', serif; font-size:15px; color:#e7cd85; }
@@ -538,6 +539,7 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
   .nav-links{ display:none; }
   .hamburger{ display:flex; }
   .lang-switch, .ai-pill, .navbtn{ display:none; }
+  .page-hero{ padding:95px 0 45px; }
   .hero:before{ background:linear-gradient(90deg,rgba(9,13,22,.96),rgba(9,13,22,.65)), var(--hero-img, url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=85')) center/cover; }
   .split, .advisor, .contact-split, .detail-body{ grid-template-columns:1fr; gap:36px; }
   .chat{ border-left:0; border-top:1px solid var(--line); }
@@ -561,6 +563,12 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
   .hero{ min-height:680px; }
   .hero .wrap{ padding:80px 0; }
   .hero:after{ display:none; }
+  #devEntityGrid{ display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:12px; background:none; border:none; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding-bottom:4px; margin:0 -15px; padding-left:15px; padding-right:15px; }
+  #devEntityGrid::-webkit-scrollbar{ display:none; }
+  #devEntityGrid .entity-card{ flex:0 0 84%; scroll-snap-align:center; border:1px solid var(--line); }
+  .carousel-dots{ display:flex; justify-content:center; gap:8px; margin-top:18px; }
+  .carousel-dots .cdot{ width:7px; height:7px; border-radius:50%; background:var(--line-strong); border:none; padding:0; cursor:pointer; transition:background .2s ease, transform .2s ease; }
+  .carousel-dots .cdot.active{ background:var(--brass); transform:scale(1.3); }
   .stats{ display:grid; grid-template-columns:1fr 1fr; }
   .stat{ border:0; margin:0; padding-right:5px; }
   .projects-grid{ grid-template-columns:1fr; }
@@ -1166,7 +1174,7 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 
   <section class="light-section" style="border-bottom:none;">
     <div class="wrap">
-      <div class="entity-grid reveal">
+      <div class="entity-grid reveal" id="devEntityGrid">
         <a href="#" data-page="developer-binghatti" class="entity-card">
           <div><div class="entity-mark">B</div></div>
           <div><h3>Binghatti</h3><p>Founded 2008 · 4 active TMLAK-tracked projects, concentrated in Business Bay.</p></div>
@@ -1213,6 +1221,7 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
           <div class="entity-foot"><span class="badge badge-pending"><span class="dot"></span>Selected Developer</span><span class="rd">View Profile →</span></div>
         </a>
       </div>
+      <div class="carousel-dots" id="devDots"></div>
     </div>
   </section>
 </div>
@@ -2731,6 +2740,37 @@ document.addEventListener('DOMContentLoaded', () => {
       if (mm) mm.classList.remove('open');
     });
   });
+
+  /* ---------- developers page: mobile swipe carousel dots ---------- */
+  (function setupDevCarousel() {
+    const track = document.getElementById('devEntityGrid');
+    const dotsWrap = document.getElementById('devDots');
+    if (!track || !dotsWrap) return;
+    const cards = Array.from(track.children);
+    if (!cards.length) return;
+    dotsWrap.innerHTML = cards.map((_, i) => `<button class="cdot${i === 0 ? ' active' : ''}" aria-label="Go to developer ${i + 1}"></button>`).join('');
+    const dots = Array.from(dotsWrap.children);
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        cards[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      });
+    });
+    let ticking = false;
+    track.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const trackCenter = track.scrollLeft + track.clientWidth / 2;
+        let closest = 0, closestDist = Infinity;
+        cards.forEach((card, i) => {
+          const dist = Math.abs((card.offsetLeft + card.offsetWidth / 2) - trackCenter);
+          if (dist < closestDist) { closestDist = dist; closest = i; }
+        });
+        dots.forEach((d, i) => d.classList.toggle('active', i === closest));
+        ticking = false;
+      });
+    }, { passive: true });
+  })();
 
   /* ---------- reveal on scroll ---------- */
   const io = new IntersectionObserver((entries) => {
