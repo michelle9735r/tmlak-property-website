@@ -412,6 +412,17 @@ html[dir="rtl"] .faq-q{ text-align:right; }
 .gallery-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:18px; }
 .gallery-grid .g-item{ aspect-ratio:4/3; background-size:cover; background-position:center; }
 
+.mini-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:18px; background:var(--line); border:1px solid var(--line); }
+.mini-card{ background:var(--surface); display:flex; flex-direction:column; }
+.mini-card .mc-img{ aspect-ratio:4/3; background-size:cover; background-position:center; }
+.mini-card .mc-body{ padding:14px 16px 16px; flex:1; display:flex; flex-direction:column; }
+.mini-card h4{ font-size:14.5px; margin:0 0 4px; font-family:'Fraunces', serif; font-weight:500; }
+.mini-card .mc-loc{ font-size:11.5px; color:var(--muted-2); margin-bottom:10px; }
+.mini-card .mc-price{ margin-top:auto; font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--brass-light); padding-top:10px; border-top:1px solid var(--line); }
+.mini-card .mc-price.pending{ color:var(--muted-2); font-style:italic; }
+@media(max-width:850px){ .mini-grid{ grid-template-columns:repeat(2,1fr); } }
+@media(max-width:560px){ .mini-grid{ grid-template-columns:1fr; } }
+
 .sidebar-card{ background:var(--surface); border:1px solid var(--line); padding:26px; margin-bottom:18px; }
 .sidebar-card h4{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted-2); margin-bottom:15px; }
 .sidebar-card .dev-row{ display:flex; align-items:center; gap:14px; }
@@ -1697,24 +1708,21 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 
         <div class="detail-section reveal">
           <h2>Other Current Launches</h2>
-          <p style="font-size:13px; color:var(--muted-2); margin-bottom:14px;">Pulled directly from Emaar's own "Latest Launches" listing. Name and community are verified from Emaar's site; pricing, unit mix and availability are not yet pulled through and are marked pending — a TMLAK advisor can get current details directly from Emaar.</p>
-          <div class="fact-grid">
-            <div class="fact-cell"><div class="fl"><span>Valia</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Dubai Creek Harbour</div></div>
-            <div class="fact-cell"><div class="fl"><span>Creek Haven</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Dubai Creek Harbour</div></div>
-            <div class="fact-cell"><div class="fl"><span>Creek Bay</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Dubai Creek Harbour</div></div>
-            <div class="fact-cell"><div class="fl"><span>Golf Trails</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Emaar South</div></div>
-            <div class="fact-cell"><div class="fl"><span>Golf Fields</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Emaar South</div></div>
-            <div class="fact-cell"><div class="fl"><span>Golf Vale</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Emaar South</div></div>
-            <div class="fact-cell"><div class="fl"><span>Vista Ridge</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Emaar South</div></div>
-            <div class="fact-cell"><div class="fl"><span>Grove Ridge</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Emaar South</div></div>
-            <div class="fact-cell"><div class="fl"><span>Fior 1</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Rashid Yachts &amp; Marina</div></div>
-            <div class="fact-cell"><div class="fl"><span>Terra Woods</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Expo Living</div></div>
-            <div class="fact-cell"><div class="fl"><span>Salva</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">The Heights Country Club &amp; Wellness</div></div>
-            <div class="fact-cell"><div class="fl"><span>Serro</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">The Heights Country Club &amp; Wellness</div></div>
-            <div class="fact-cell"><div class="fl"><span>Serro 2</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">The Heights Country Club &amp; Wellness</div></div>
-            <div class="fact-cell"><div class="fl"><span>Greencrest</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Dubai Hills Estate</div></div>
+          <p style="font-size:13px; color:var(--muted-2); margin-bottom:14px;">Community and starting price for most of these are cross-checked against an independent broker's published Emaar launch-pack data, current as of August 2026 — not Emaar's own site directly. Treat as indicative and confirm current pricing with an advisor before relying on it.</p>
+          <div class="mini-grid">
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>Valia</h4><div class="mc-loc">Dubai Creek Harbour · 491 apartments</div><div class="mc-price">From AED 1.96M · Dec 2030</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>Creek Haven</h4><div class="mc-loc">Dubai Creek Harbour · 593 apartments</div><div class="mc-price">From AED 1.86M · Mar 2030</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>Creek Bay</h4><div class="mc-loc">Dubai Creek Harbour · 568 apartments</div><div class="mc-price">From AED 1.79M · Apr 2030</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>Golf Trails</h4><div class="mc-loc">Emaar South · 161 homes, golf-front</div><div class="mc-price">From AED 1.25M · Oct 2030</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>Golf Fields</h4><div class="mc-loc">Emaar South · 181 homes, golf-front</div><div class="mc-price">From AED 1.26M · Sep 2030</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>Vista Ridge</h4><div class="mc-loc">Emaar South</div><div class="mc-price pending">Pricing not yet pulled — ask advisor</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>Grove Ridge</h4><div class="mc-loc">Emaar South</div><div class="mc-price pending">Pricing not yet pulled — ask advisor</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>Terra Woods</h4><div class="mc-loc">Expo Living · 824 homes</div><div class="mc-price">From AED 1.6M · Mar 2030</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>Greencrest</h4><div class="mc-loc">Dubai Hills Estate · 195 apartments</div><div class="mc-price">From AED 1.57M · Jun 2029</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>Fior 1</h4><div class="mc-loc">Rashid Yachts &amp; Marina · 181 apartments</div><div class="mc-price">From AED 2.21M · Jul 2030</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>Salva &amp; Serro</h4><div class="mc-loc">The Heights Country Club &amp; Wellness · 1,263 villas</div><div class="mc-price pending">Price on request (not published by Emaar)</div></div></div>
           </div>
-          <p style="margin-top:14px; font-size:12px; color:var(--muted-2);">Source: emaar.com/en/latest-launches. Pulled on the date this page was built — Emaar updates this list frequently, so treat it as a snapshot rather than always-current.</p>
+          <p style="margin-top:14px; font-size:12px; color:var(--muted-2);">Sources: emaar.com/en/latest-launches (names, communities) and an independent broker's published launch-pack comparison (starting prices, unit counts, completion dates), cross-checked against each other. Pulled on the date this page was built; Emaar updates and reprices frequently.</p>
         </div>
         
         <div class="detail-section reveal">
@@ -1786,12 +1794,12 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
         <div class="detail-section reveal">
           <h2>Other DAMAC Featured Projects</h2>
           <p style="font-size:13px; color:var(--muted-2); margin-bottom:14px;">Pulled directly from DAMAC's own "Featured Projects" list. Names, communities, starting prices and bedroom counts are as shown on DAMAC's site (in GBP, as displayed at time of research) — AED figures and current availability pending confirmation from a TMLAK advisor.</p>
-          <div class="fact-grid">
-            <div class="fact-cell"><div class="fl"><span>Valencia</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">DAMAC Lagoons · From £312,132 · 1–2 BR Apartment</div></div>
-            <div class="fact-cell"><div class="fl"><span>Azure 2</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">DAMAC Riverside · From £163,253 · Studio–2 BR Apartment</div></div>
-            <div class="fact-cell"><div class="fl"><span>Chelsea Residences</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Dubai Maritime City · From £516,045 · 1–2 BR Apartment</div></div>
-            <div class="fact-cell"><div class="fl"><span>Safa Gate</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Sheikh Zayed Road · From £302,686 · Studio–5 BR Apartment</div></div>
-            <div class="fact-cell"><div class="fl"><span>Couture by Cavalli</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Business Bay · From £4,497,987 · 3–5 BR Apartment/Penthouse</div></div>
+          <div class="mini-grid">
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>Valencia</h4><div class="mc-loc">DAMAC Lagoons · 1–2 BR Apartment</div><div class="mc-price">From £312,132</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>Azure 2</h4><div class="mc-loc">DAMAC Riverside · Studio–2 BR Apartment</div><div class="mc-price">From £163,253</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>Chelsea Residences</h4><div class="mc-loc">Dubai Maritime City · 1–2 BR Apartment</div><div class="mc-price">From £516,045</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>Safa Gate</h4><div class="mc-loc">Sheikh Zayed Road · Studio–5 BR Apartment</div><div class="mc-price">From £302,686</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>Couture by Cavalli</h4><div class="mc-loc">Business Bay · 3–5 BR Apartment/Penthouse</div><div class="mc-price">From £4,497,987</div></div></div>
           </div>
           <p style="margin-top:14px; font-size:12px; color:var(--muted-2);">Source: damacproperties.com/en/projects — DAMAC's own curated "Featured Projects" list, not TMLAK's selection. Pulled on the date this page was built; DAMAC updates this list frequently.</p>
         </div>
@@ -1864,21 +1872,21 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 
         <div class="detail-section reveal">
           <h2>Other Current Launches</h2>
-          <p style="font-size:13px; color:var(--muted-2); margin-bottom:14px;">Pulled directly from Sobha's own site — their current homepage-featured launch is The Woods, at Sobha Sanctuary. Names and communities are verified; detailed pricing and availability are pending confirmation from a TMLAK advisor.</p>
-          <div class="fact-grid">
-            <div class="fact-cell"><div class="fl"><span>The Woods Abode</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Sobha Sanctuary</div></div>
-            <div class="fact-cell"><div class="fl"><span>The Woods Serenity</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Sobha Sanctuary</div></div>
-            <div class="fact-cell"><div class="fl"><span>The Woods Retreat</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Sobha Sanctuary</div></div>
-            <div class="fact-cell"><div class="fl"><span>The Willows</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Sobha Sanctuary · Villas</div></div>
-            <div class="fact-cell"><div class="fl"><span>The Grove</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Sobha Sanctuary · Villas</div></div>
-            <div class="fact-cell"><div class="fl"><span>The Greens</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Sobha Sanctuary · Villas</div></div>
-            <div class="fact-cell"><div class="fl"><span>The Brooks</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Sobha Sanctuary · Villas</div></div>
-            <div class="fact-cell"><div class="fl"><span>Sobha One</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Mohammed Bin Rashid City · Apartments</div></div>
-            <div class="fact-cell"><div class="fl"><span>Sobha SeaHaven</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Dubai Marina · Apartments</div></div>
-            <div class="fact-cell"><div class="fl"><span>The Orchard</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Sobha City, Abu Dhabi · Villas</div></div>
-            <div class="fact-cell"><div class="fl"><span>River Cove Residences</span><span class="badge badge-verified"><span class="dot"></span>Verified</span></div><div class="fv">Sobha City, Abu Dhabi · Apartments</div></div>
+          <p style="font-size:13px; color:var(--muted-2); margin-bottom:14px;">Pricing below is pulled directly from Sobha's own project pages and verified listing portals where available. Villas at Sobha Sanctuary (The Willows, Grove, Greens, Brooks) and the Abu Dhabi projects don't have a published starting price yet — marked accordingly.</p>
+          <div class="mini-grid">
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>The Woods Abode</h4><div class="mc-loc">Sobha Sanctuary · 1–2 BR apartments</div><div class="mc-price">From AED 1M · Handover Dec 2029</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>The Woods Serenity</h4><div class="mc-loc">Sobha Sanctuary · 1–2 BR apartments</div><div class="mc-price">From ~AED 1M (second Woods release)</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>The Woods Retreat</h4><div class="mc-loc">Sobha Sanctuary · 1–2 BR apartments</div><div class="mc-price pending">Pricing not yet pulled — ask advisor</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>Sobha One</h4><div class="mc-loc">Mohammed Bin Rashid City · Apartments</div><div class="mc-price">From AED 1.82M</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>Sobha SeaHaven</h4><div class="mc-loc">Dubai Marina · 1–4 BR waterfront apartments</div><div class="mc-price">From AED 3.15M</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>The Willows</h4><div class="mc-loc">Sobha Sanctuary · Villas</div><div class="mc-price pending">Pricing not yet pulled — ask advisor</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>The Grove</h4><div class="mc-loc">Sobha Sanctuary · Villas</div><div class="mc-price pending">Pricing not yet pulled — ask advisor</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>The Greens</h4><div class="mc-loc">Sobha Sanctuary · Villas</div><div class="mc-price pending">Pricing not yet pulled — ask advisor</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>The Brooks</h4><div class="mc-loc">Sobha Sanctuary · Villas</div><div class="mc-price pending">Pricing not yet pulled — ask advisor</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>The Orchard</h4><div class="mc-loc">Sobha City, Abu Dhabi · Villas</div><div class="mc-price pending">Pricing not yet pulled — ask advisor</div></div></div>
+            <div class="mini-card"><div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=500&q=75')"></div><div class="mc-body"><h4>River Cove Residences</h4><div class="mc-loc">Sobha City, Abu Dhabi · Apartments</div><div class="mc-price pending">Pricing not yet pulled — ask advisor</div></div></div>
           </div>
-          <p style="margin-top:14px; font-size:12px; color:var(--muted-2);">Source: sobharealty.com. Pulled on the date this page was built — Sobha updates this list frequently.</p>
+          <p style="margin-top:14px; font-size:12px; color:var(--muted-2);">Sources: sobharealty.com (names, communities, Woods Abode/SeaHaven/Sobha One pricing) plus verified listing portals for handover dates. Pulled on the date this page was built; Sobha updates and reprices frequently.</p>
         </div>
         
         <div class="detail-section reveal">
