@@ -241,6 +241,7 @@ html[dir="rtl"] .filter-count{ margin-left:0; margin-right:auto; }
 
 /* ---------- PANEL / METRIC (developers, facts) ---------- */
 .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.testimonial-grid{ grid-template-columns:1fr 1fr 1fr; gap:2px; background:var(--line); border:1px solid var(--line); }
 .panel{ border:1px solid var(--line); background:var(--surface); padding:44px; }
 .panel h3{ font:500 clamp(24px,2.6vw,38px)/1.08 'Fraunces',serif; margin:12px 0 18px; }
 .metric{ display:flex; justify-content:space-between; border-top:1px solid var(--line); padding:15px 0; font-size:11px; color:var(--text-soft); }
@@ -555,8 +556,10 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
   .hamburger{ display:flex; }
   .lang-switch, .ai-pill, .navbtn{ display:none; }
   .page-hero{ padding:95px 0 45px; }
+  .detail-hero{ padding:95px 0 40px; }
   .hero:before{ background:linear-gradient(90deg,rgba(9,13,22,.96),rgba(9,13,22,.65)), var(--hero-img, url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=85')) center/cover; }
   .split, .advisor, .contact-split, .detail-body{ grid-template-columns:1fr; gap:36px; }
+  .fact-grid, .services-grid, .roi-layout, .roi-hero-metrics{ grid-template-columns:1fr; }
   .chat{ border-left:0; border-top:1px solid var(--line); }
   html[dir="rtl"] .chat{ border-right:0; }
   .projects-grid{ grid-template-columns:1fr 1fr; }
@@ -905,7 +908,7 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
   <section class="light-section" id="testimonials-section">
     <div class="wrap">
       <div class="head reveal"><div><h2>4.9 / 5.0<br>average rating.</h2></div></div>
-      <div class="grid2 reveal" style="grid-template-columns:1fr 1fr 1fr; gap:2px; background:var(--line); border:1px solid var(--line);">
+      <div class="grid2 testimonial-grid reveal">
         <div class="panel" style="border:none;"><p style="font-family:'Fraunces',serif; font-size:15px; line-height:1.6; color:var(--text);">"Our search felt hassle-free from day one — the team understood our budget and lifestyle and only showed us what actually matched."</p><div class="metric" style="border-top:none; margin-top:14px;"><span>Verified Client — Buyer</span></div></div>
         <div class="t-placeholder">Additional testimonials pending client approval for publication.</div>
         <div class="t-placeholder">Additional testimonials pending client approval for publication.</div>
