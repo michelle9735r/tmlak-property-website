@@ -158,15 +158,18 @@ html[dir="rtl"] .lang-menu{ right:auto; left:0; }
 
 /* ---------- HERO (photographic, cinematic) ---------- */
 .hero{ min-height:calc(100vh - 112px); position:relative; display:flex; align-items:center; overflow:hidden; }
-.hero:before{ content:''; position:absolute; inset:-3%; background:
-  linear-gradient(90deg, var(--ink) 0%, rgba(9,13,22,.94) 36%, rgba(9,13,22,.4) 72%, rgba(9,13,22,.22)),
-  var(--hero-img, url('images/hero-dubai.jpg')) center/cover;
+.hero-media{ position:absolute; inset:-3%; z-index:0; }
+.hero-media video, .hero-media .hero-poster{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.hero-media .hero-poster{ background:var(--hero-img, url('images/hero-dubai.jpg')) center/cover;
   animation: heroKenBurns 26s ease-in-out infinite alternate; }
+.hero-media video.playing ~ .hero-poster{ display:none; }
+.hero:before{ content:''; position:absolute; inset:-3%; z-index:1; background:
+  linear-gradient(90deg, var(--ink) 0%, rgba(9,13,22,.94) 36%, rgba(9,13,22,.4) 72%, rgba(9,13,22,.22)); }
 @keyframes heroKenBurns{
   0%{ transform:scale(1) translate(0,0); }
   100%{ transform:scale(1.09) translate(-1%,-1%); }
 }
-.hero:after{ content:''; position:absolute; right:-8%; bottom:-35%; width:58vw; height:58vw; border:1px solid rgba(199,163,90,.18); border-radius:50%; box-shadow:0 0 0 90px rgba(199,163,90,.025), 0 0 0 180px rgba(199,163,90,.018); pointer-events:none; }
+.hero:after{ content:''; position:absolute; right:-8%; bottom:-35%; width:58vw; height:58vw; border:1px solid rgba(199,163,90,.18); border-radius:50%; box-shadow:0 0 0 90px rgba(199,163,90,.025), 0 0 0 180px rgba(199,163,90,.018); pointer-events:none; z-index:1; }
 .hero .wrap{ position:relative; z-index:2; padding:95px 0; }
 .hero h1{ font:500 clamp(46px,7vw,96px)/.94 'Fraunces',Georgia,serif; letter-spacing:-.04em; max-width:850px; margin:20px 0; }
 .hero h1 em{ font-style:normal; color:var(--brass-light); }
@@ -558,7 +561,7 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
   .lang-btn{ padding:7px 9px; font-size:9.5px; }
   .page-hero{ padding:95px 0 45px; }
   .detail-hero{ padding:95px 0 40px; }
-  .hero:before{ background:linear-gradient(90deg,rgba(9,13,22,.96),rgba(9,13,22,.65)), var(--hero-img, url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=85')) center/cover; }
+  .hero:before{ background:linear-gradient(90deg,rgba(9,13,22,.96),rgba(9,13,22,.65)); }
   .split, .advisor, .contact-split, .detail-body{ grid-template-columns:1fr; gap:36px; }
   .fact-grid, .services-grid, .roi-layout, .roi-hero-metrics{ grid-template-columns:1fr; }
   .chat{ border-left:0; border-top:1px solid var(--line); }
@@ -673,6 +676,10 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
 <main>
 <div class="page active" id="page-home">
 <section class="hero">
+  <div class="hero-media">
+    <video id="heroVideo" muted playsinline preload="none" poster="images/hero-dubai.jpg"></video>
+    <div class="hero-poster" id="heroPoster"></div>
+  </div>
     <div class="wrap">
       <h1 data-i18n-html="hero.title">Dubai property.<br><em>Informed decisions.</em></h1>
       <p class="lead" data-i18n="hero.lead">TMLAK Property helps investors and buyers see Dubai real estate the way an investor would — sharper market insight, disciplined property selection and human advice, so you find better opportunities, not just available ones.</p>
@@ -3172,6 +3179,38 @@ document.addEventListener('DOMContentLoaded', () => {
         ticking = false;
       });
     }, { passive: true });
+  })();
+
+  /* ---------- hero background video rotation ---------- */
+  (function setupHeroVideo() {
+    const video = document.getElementById('heroVideo');
+    const poster = document.getElementById('heroPoster');
+    if (!video || !poster) return;
+
+    const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const saveData = navigator.connection && navigator.connection.saveData;
+    if (reducedMotion || saveData) return; // keep static poster with its own Ken Burns animation
+
+    const clips = [
+      'videos/hero-1-marina-day.mp4',
+      'videos/hero-2-palm-yacht.mp4',
+      'videos/hero-3-museum-future.mp4',
+      'videos/hero-4-marina-boat.mp4'
+    ];
+    let i = 0;
+
+    function playClip() {
+      video.src = clips[i];
+      video.load();
+      video.play().catch(() => {}); // autoplay can be blocked; poster stays visible if so
+    }
+    video.addEventListener('ended', () => {
+      i = (i + 1) % clips.length;
+      playClip();
+    });
+    video.addEventListener('playing', () => video.classList.add('playing'), { once: true });
+
+    playClip();
   })();
 
   /* ---------- reveal on scroll ---------- */
