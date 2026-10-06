@@ -113,11 +113,27 @@ html[dir="rtl"] .lang-menu{ right:auto; left:0; }
 /* ---------- SERVICES GRID (numbered, tagged) ---------- */
 .services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:50px; }
 .svc-cell{ background:var(--ink); padding:28px; position:relative; transition:background .3s ease; }
-.svc-cell:hover{ background:var(--surface); }
+@media (hover:hover){ .svc-cell:hover{ background:#121a2a; } }
 .svc-cell .svc-num{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:#c6a24d; }
 .svc-cell h4{ font-size:17px; font-weight:500; margin:14px 0 8px; font-family:'Fraunces', serif; color:#f2eee2; }
 .svc-cell p{ font-size:12.5px; color:#929bad; line-height:1.6; margin-bottom:14px; }
 .svc-tag{ display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:.08em; text-transform:uppercase; color:#e7cd85; border:1px solid rgba(198,162,77,.35); padding:4px 9px; }
+/* services: compact tap-to-expand list on tablet/mobile (desktop grid unchanged) */
+@media (max-width:850px){
+  .svc-cell{ display:grid; grid-template-columns:34px 1fr 22px; align-items:center; column-gap:6px; padding:18px 20px; cursor:pointer; -webkit-tap-highlight-color:transparent; transition:background .3s ease; }
+  .svc-cell:focus-visible{ outline:2px solid #e7cd85; outline-offset:-2px; }
+  .svc-cell.open{ background:#0f1626; }
+  .svc-cell .svc-num{ grid-column:1; }
+  .svc-cell h4{ grid-column:2; margin:0; }
+  .svc-cell::after{ content:'+'; grid-column:3; grid-row:1; text-align:right; font:300 24px/1 'IBM Plex Mono',monospace; color:#c6a24d; transition:transform .3s ease; }
+  .svc-cell.open::after{ transform:rotate(45deg); }
+  .svc-cell p{ grid-column:2 / 4; margin:0; max-height:0; overflow:hidden; opacity:0; font-size:13.5px; transition:max-height .35s ease, opacity .3s ease, margin .3s ease; }
+  .svc-cell .svc-tag{ grid-column:2; justify-self:start; max-height:0; overflow:hidden; opacity:0; padding-top:0; padding-bottom:0; border-width:0; margin-top:0; transition:max-height .35s ease, opacity .3s ease, margin .3s ease, padding .3s ease; }
+  .svc-cell.open p{ max-height:150px; opacity:1; margin:12px 0 0; }
+  .svc-cell.open .svc-tag{ max-height:32px; opacity:1; margin-top:12px; padding-top:4px; padding-bottom:4px; border-width:1px; }
+}
+@media (prefers-reduced-motion:reduce){ .svc-cell, .svc-cell::after, .svc-cell p, .svc-cell .svc-tag{ transition:none; } }
+
 
 /* ---------- FOR OWNERS STRIP ---------- */
 .owners-panel{ border:1px solid var(--line); background:var(--surface); padding:44px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:26px; }
@@ -223,6 +239,14 @@ section{ padding:105px 0; border-bottom:1px solid var(--line); }
 .card .facts svg{ width:12px; height:12px; color:var(--brass-light); flex-shrink:0; }
 .card:after{ content:''; position:absolute; inset:0; background:linear-gradient(180deg,transparent 35%, rgba(4,7,12,.94) 100%); }
 .card .body{ position:absolute; z-index:2; left:25px; right:25px; bottom:25px; }
+/* home "Projects worth a closer look": swipe carousel on phones (desktop/tablet unchanged) */
+@media (max-width:560px){
+  #homeProjectGrid{ display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:12px; margin:0 -15px; padding:0 15px 4px; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
+  #homeProjectGrid::-webkit-scrollbar{ display:none; }
+  #homeProjectGrid .card{ flex:0 0 84%; height:380px; scroll-snap-align:center; }
+  #homeProjectGrid .card h3{ font-size:26px; }
+}
+
 .tag{ font:9px 'IBM Plex Mono',monospace; letter-spacing:.16em; text-transform:uppercase; color:var(--brass-light); }
 .card h3{ font:500 30px/1.1 'Fraunces',serif; margin:8px 0; }
 .card p{ font-size:11px; color:var(--text-soft); margin:0; }
@@ -506,6 +530,37 @@ html[dir="rtl"] .fab-label{ right:auto; left:calc(100% + 12px); }
 .fab-item:hover .fab-label{ opacity:1; }
 @media (max-width:560px){ .fab-label{ display:none; } }
 
+/* ---------- TAMMY: AI SUPPORT AVATAR (below WhatsApp FAB) ---------- */
+.tai-wrap{ position:relative; width:66px; height:66px; }
+.tai-btn{ position:relative; display:block; width:66px; height:66px; padding:0; border-radius:50%; border:2px solid var(--brass); background:#121a2a; overflow:hidden; cursor:pointer; box-shadow:0 8px 24px rgba(0,0,0,.45), 0 0 0 4px rgba(198,162,77,.14); transition:transform .25s ease; }
+.tai-btn:hover{ transform:scale(1.06); }
+.tai-btn:focus-visible{ outline:2px solid var(--brass-light); outline-offset:3px; }
+.tai-btn img{ display:block; width:100%; height:100%; object-fit:cover; transform-origin:50% 40%; animation:taiBreathe 6s ease-in-out infinite; }
+@keyframes taiBreathe{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.07); } }
+.tai-dot{ position:absolute; right:1px; bottom:3px; width:13px; height:13px; border-radius:50%; background:#25D366; border:2px solid #121a2a; z-index:2; pointer-events:none; }
+.tai-badge{ position:absolute; left:-6px; top:-6px; width:28px; height:28px; border-radius:50%; background:var(--brass); color:#10131a; box-shadow:0 3px 10px rgba(0,0,0,.45); z-index:2; pointer-events:none; }
+.tai-badge svg{ position:absolute; inset:5px; width:18px; height:18px; opacity:0; animation:taiScene 12s infinite; }
+.tai-badge svg:nth-child(2){ animation-delay:-8s; } .tai-badge svg:nth-child(3){ animation-delay:-4s; }
+.tai-badge .tai-wave{ transform-origin:70% 85%; animation:taiScene 12s infinite, taiWave .6s ease-in-out infinite alternate; }
+@keyframes taiScene{ 0%{opacity:1} 29%{opacity:1} 33%{opacity:0} 96%{opacity:0} 100%{opacity:1} }
+@keyframes taiWave{ from{ rotate:-16deg; } to{ rotate:16deg; } }
+.tai-cap{ position:absolute; right:calc(100% + 12px); top:50%; transform:translateY(-50%); height:34px; width:150px; background:var(--surface-2); border:1px solid var(--line-strong); box-shadow:0 6px 16px rgba(0,0,0,.35); border-radius:17px; pointer-events:none; }
+.tai-cap span{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font:500 12px 'Inter',sans-serif; color:var(--text); opacity:0; animation:taiScene 12s infinite; white-space:nowrap; }
+.tai-cap span:nth-child(2){ animation-delay:-8s; } .tai-cap span:nth-child(3){ animation-delay:-4s; }
+.tai-wrap.open .tai-cap{ display:none; }
+.tai-pop{ position:absolute; right:calc(100% + 12px); bottom:0; width:232px; background:var(--surface-2); border:1px solid var(--line-strong); box-shadow:0 12px 32px rgba(0,0,0,.5); padding:6px; opacity:0; visibility:hidden; transform:translateY(8px); transition:opacity .2s ease, transform .25s ease, visibility .2s; }
+.tai-wrap.open .tai-pop{ opacity:1; visibility:visible; transform:none; }
+.tai-pop-head{ padding:10px 12px 8px; font:500 11px 'IBM Plex Mono',monospace; letter-spacing:.06em; color:var(--brass-light); }
+.tai-pop-item{ display:block; padding:12px; font:500 13px 'Inter',sans-serif; color:var(--text); text-decoration:none; border-top:1px solid var(--line); }
+.tai-pop-item:hover, .tai-pop-item:focus-visible{ background:rgba(198,162,77,.12); outline:none; }
+html[dir="rtl"] .tai-cap, html[dir="rtl"] .tai-pop{ right:auto; left:calc(100% + 12px); }
+html[dir="rtl"] .tai-badge{ left:auto; right:-6px; }
+@media (max-width:560px){ .tai-cap{ display:none; } .tai-wrap, .tai-btn{ width:60px; height:60px; } .tai-pop{ width:208px; } }
+@media (prefers-reduced-motion:reduce){
+  .tai-btn img, .tai-badge svg, .tai-badge .tai-wave, .tai-cap span{ animation:none; }
+  .tai-badge svg:first-child, .tai-cap span:first-child{ opacity:1; }
+}
+
 /* ---------- FOOTER (slim, premium) ---------- */
 footer{ padding:35px 0; color:var(--muted); font-size:10px; }
 footer .foot{ display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; align-items:center; }
@@ -668,24 +723,7 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
       <p class="lead" data-i18n="hero.lead">TMLAK Property helps investors and buyers see Dubai real estate the way an investor would — sharper market insight, disciplined property selection and human advice, so you find better opportunities, not just available ones.</p>
       <div class="actions">
         <a class="btn gold" href="#" data-page="projects" data-i18n="hero.cta.explore">Explore opportunities</a>
-        <a class="btn" href="#" data-page="ai-advisor" data-i18n="hero.cta.askAI">Ask the AI Advisor</a>
         <a class="btn" href="#" data-page="investment-calculator" data-i18n="hero.cta.roi">ROI Calculator</a>
-      </div>
-      <div class="stats">
-        <div class="stat"><b>Dubai</b><span data-i18n="hero.stat1">Our Market</span></div>
-        <div class="stat"><b>4.9/5</b><span data-i18n="hero.stat2">Client Rating</span></div>
-        <div class="stat"><b>AI + Human</b><span data-i18n="hero.stat3">Advisory Model</span></div>
-      </div>
-      <div class="trust-line">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
-        <span data-i18n="hero.trustLine">Every figure on this site is marked Verified or Information Required — we don't invent prices.</span>
-      </div>
-      <div class="hero-ai reveal">
-        <div class="hero-ai-label"><span class="pulse"></span><span data-i18n="hero.aiLabel">TMLAK AI Advisor · Available Now</span></div>
-        <div class="hero-ai-row">
-          <input type="text" data-i18n-placeholder="hero.aiPlaceholder" placeholder="Ask about Dubai property, yields, or the Golden Visa…" readonly onclick="openAdvisorModal()">
-          <button onclick="openAdvisorModal()" data-i18n="hero.aiButton">Ask →</button>
-        </div>
       </div>
     </div>
   </section>
@@ -731,7 +769,7 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
         <div><h2>Projects worth<br>a closer look.</h2></div>
         <a class="btn" href="#" data-page="projects">View All Projects →</a>
       </div>
-      <div class="projects-grid reveal">
+      <div class="projects-grid reveal" id="homeProjectGrid">
         <a class="card" href="#" data-page="project-burj-binghatti-jacob-co">
           <div class="img" style="background-image:url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=85')"></div>
           <div class="body">
@@ -759,6 +797,7 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
           </div>
         </a>
       </div>
+      <div class="carousel-dots" id="homeProjectDots"></div>
     </div>
   </section>
 
@@ -2770,6 +2809,23 @@ footer .foot .flinks a:hover{ color:var(--brass-light); }
     <svg class="icon-whatsapp" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.06h-.01a8.14 8.14 0 0 1-4.15-1.14l-.3-.18-3.11.82.83-3.03-.19-.31a8.15 8.15 0 0 1-1.25-4.31c0-4.5 3.66-8.16 8.17-8.16 2.18 0 4.23.85 5.77 2.39a8.1 8.1 0 0 1 2.39 5.78c0 4.5-3.67 8.14-8.15 8.14z"/></svg>
     <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
   </button>
+  <div class="tai-wrap" id="taiWrap">
+    <div class="tai-cap" aria-hidden="true"><span>Hi, I'm Tammy</span><span>Questions? Ask me</span><span>Ready to help</span></div>
+    <div class="tai-pop" id="taiPop" role="menu" aria-label="Tammy, TMLAK AI Support">
+      <div class="tai-pop-head">Tammy · TMLAK AI Support</div>
+      <a href="#" class="tai-pop-item" data-page="ai-advisor" role="menuitem">Chat with the AI Advisor</a>
+      <a href="#" class="tai-pop-item" data-page="contact" role="menuitem">Request a consultation</a>
+    </div>
+    <button class="tai-btn" id="taiBtn" type="button" aria-label="Tammy, TMLAK AI Support: chat or request a consultation" aria-expanded="false" aria-controls="taiPop">
+      <img src="data:image/jpeg;base64,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" width="100" height="100" alt="Tammy, TMLAK AI Support">
+    </button>
+    <span class="tai-badge" aria-hidden="true">
+      <svg class="tai-wave" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-4 0"/><path d="M14 10V4a2 2 0 0 0-4 0v2"/><path d="M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></svg>
+    </span>
+    <span class="tai-dot" aria-hidden="true"></span>
+  </div>
 </div>
 
 <script>
@@ -3745,5 +3801,65 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 </script>
+
+<script>
+(function(){
+  var w = document.getElementById('taiWrap'), b = document.getElementById('taiBtn');
+  if (!w || !b) return;
+  function set(open){ w.classList.toggle('open', open); b.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+  b.addEventListener('click', function(e){ e.stopPropagation(); set(!w.classList.contains('open')); });
+  document.getElementById('taiPop').addEventListener('click', function(){ set(false); });
+  document.addEventListener('click', function(e){ if (!w.contains(e.target)) set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+})();
+</script>
+
+<script>
+(function(){
+  var cells=[].slice.call(document.querySelectorAll('.svc-cell'));
+  if(!cells.length||!window.matchMedia) return;
+  var mq=window.matchMedia('(max-width:850px)');
+  function setOpen(c,o){ c.classList.toggle('open',o); c.setAttribute('aria-expanded',o?'true':'false'); }
+  function toggle(c){ var o=!c.classList.contains('open'); cells.forEach(function(x){ setOpen(x,false); }); setOpen(c,o); }
+  function apply(){
+    if(mq.matches){
+      cells.forEach(function(c){ c.setAttribute('role','button'); c.setAttribute('tabindex','0'); c.setAttribute('aria-expanded',c.classList.contains('open')?'true':'false'); });
+      if(!cells.some(function(c){ return c.classList.contains('open'); })) setOpen(cells[0],true);
+    } else {
+      cells.forEach(function(c){ c.classList.remove('open'); c.removeAttribute('role'); c.removeAttribute('tabindex'); c.removeAttribute('aria-expanded'); });
+    }
+  }
+  cells.forEach(function(c){
+    c.addEventListener('click',function(){ if(mq.matches) toggle(c); });
+    c.addEventListener('keydown',function(e){ if(mq.matches&&(e.key==='Enter'||e.key===' ')){ e.preventDefault(); toggle(c); } });
+  });
+  if(mq.addEventListener) mq.addEventListener('change',apply); else mq.addListener(apply);
+  apply();
+})();
+</script>
+
+<script>
+(function(){
+  var track=document.getElementById('homeProjectGrid'), dotsWrap=document.getElementById('homeProjectDots');
+  if(!track||!dotsWrap) return;
+  var cards=[].slice.call(track.children); if(!cards.length) return;
+  dotsWrap.innerHTML=cards.map(function(_,i){ return '<button class="cdot'+(i===0?' active':'')+'" aria-label="Go to project '+(i+1)+'"></button>'; }).join('');
+  var dots=[].slice.call(dotsWrap.children);
+  dots.forEach(function(d,i){ d.addEventListener('click',function(){ var c=cards[i]; track.scrollTo({left:c.offsetLeft-(track.clientWidth-c.offsetWidth)/2,behavior:'smooth'}); }); });
+  var ticking=false;
+  track.addEventListener('scroll',function(){
+    if(ticking) return; ticking=true;
+    requestAnimationFrame(function(){
+      var mid=track.scrollLeft+track.clientWidth/2, best=0, bd=Infinity;
+      cards.forEach(function(c,i){ var d=Math.abs(c.offsetLeft+c.offsetWidth/2-mid); if(d<bd){ bd=d; best=i; } });
+      dots.forEach(function(d,i){ d.classList.toggle('active',i===best); });
+      ticking=false;
+    });
+  },{passive:true});
+})();
+</script>
+
+
+
 </body>
 </html>
